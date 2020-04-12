@@ -1,0 +1,19 @@
+#Mission 1 + 2
+on rightclick on gold block:
+    set {_counter} to 0 #Counts the mobs killed
+    loop entities in radius 5 of event-block:
+        if loop-entity is alive: #Checking because items are also entities
+            if loop-entity isn't a player: #Players are alive and enitites
+                kill loop-entity
+                add 1 to {_counter}
+    message "%{_counter}% mobs killed"
+
+#Mission 3
+on join:
+    set {grass.broken} to 0
+    while player is online:
+        send "&7You broke &a%{grass.broken}% &7grass"
+        wait 5 seconds
+
+on break of grass:
+    add 1 to {grass.broken}

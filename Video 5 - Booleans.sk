@@ -1,0 +1,22 @@
+#Mission 1
+on place of bedrock:
+     if player isn't op:
+          cancel event
+          message "&cYou don't have permissions to do this"
+
+#Mission 2
+command /chatmute:
+    trigger:
+        if player is op:
+            if {chat.mute} isn't true:
+                set {chat.mute} to true
+                broadcast "&eChat is now muted by &7%player%"
+            else:
+                set {chat.mute} to false
+                broadcast "&eChat is now unmuted by &7%player%"
+
+on chat:
+    if {chat.mute} is true:
+        if player isn't op:
+            cancel event
+            send "&cThe chat is muted"

@@ -1,0 +1,14 @@
+#Mission 1
+command /broadcast <text>:
+    trigger:
+        #Option 1
+        broadcast "&c&lBroadcast: &7%arg%"
+        #Option 2
+        message "&c&lBroadcast: &7%arg%" to all players
+
+#Mission 2
+command /tell <offline player> <text>:
+    trigger:
+        message "&bFrom %player%: &7%arg-2%" to arg-1
+        #An addition (Always try to be creative)
+        message "&bTo %arg-1%: &7%arg-2%" to player

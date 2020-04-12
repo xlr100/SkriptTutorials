@@ -1,0 +1,30 @@
+#Mission 1
+options:
+	grass: "You broke a grass block"
+	glass: "You broke a glass block"
+	stone: "You broke a stone block"
+	dirt: "You broke a dirt block"
+
+on break of grass:
+	message {@grass}
+
+on break of glass:
+	message {@glass}
+
+on break of stone:
+	message {@stone}
+
+on break of dirt:
+	message {@dirt}
+
+
+#Mission 2
+on place of glass:
+    set {last.glass} to location of event-block
+    #An addition
+    send "&aGlass location set"
+
+command /glass:
+    trigger:
+        teleport player to {last.glass}
+        send "&aTeleported to last placed glass"

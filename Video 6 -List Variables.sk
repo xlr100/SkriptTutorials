@@ -1,0 +1,37 @@
+#Mission 2
+
+on join: #An addition in order to make sure the variable is set
+    if {balance::%uuid of player%} isn't set:
+        set {balance::%uuid of player%} to 0
+
+command /balanceset <offline player> <integer>:
+    trigger:
+        if player is op:
+            set {balance::%uuid of arg-1%} to arg-2
+            message "&cThe balance of %arg-1% has been set to %arg-2%"
+
+
+command /balancelist:    
+    trigger:
+        message "&eBalance List"
+        loop {balance::*}:
+            set {_p} to offline player from loop-index
+            send "&7%{_p}%: &e%loop-value%"
+          
+
+command /pay <offline player> <integer>:
+    trigger:
+        if {balance::%uuid of arg-1%} is set:
+            if {balance::%uuid of player%} >= arg-2:
+                subtract arg-2 from {balance::%uuid of player%}
+                message "&eYou payed %arg-1% $%arg-2%"
+                add arg-2 to {balance::%uuid of arg-1%}
+                message "&e%player% &7payed you $%arg-2%" to arg-1
+            else:
+                message "&cYou don't have enough money to do this"
+        else:
+            message "&c%arg-1% doesn't have a balance"
+
+command /balance:
+    trigger:
+        message "&bBalance: &7$%{balance::%uuid of player%}%"
